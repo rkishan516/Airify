@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 class qualityValue extends StatefulWidget {
@@ -8,18 +9,22 @@ class qualityValue extends StatefulWidget {
 class _qualityValueState extends State<qualityValue> {
   bool _validate = false;
   TextEditingController _controller = TextEditingController();
+  final _databaseReference = FirebaseDatabase.instance.reference();
 
   void _onSubmit(String value) {
     setState(() {
-      (int.parse(_controller.text) >= 1000)
+      (int.parse(_controller.text) > 1000)
           ? _validate = true
           : _validate = false;
     });
+    if (_validate == false) {
+      _databaseReference.child('2').update({'buzzer value': _controller.text});
+    }
   }
 
   void _onChange(String value) {
     setState(() {
-      (int.parse(_controller.text) >= 1000)
+      (int.parse(_controller.text) > 1000)
           ? _validate = true
           : _validate = false;
     });

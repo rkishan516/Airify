@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "391914447493",
+    "firebase_url": "https://airify-rki.firebaseio.com",
+    "project_id": "airify-rki",
+    "storage_bucket": "airify-rki.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:391914447493:android:20954816826adbe1",
+        "android_client_info": {
+          "package_name": "com.example.airify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "391914447493-na20gnolchrcaftob5tm1pkb6qhfpfqg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1q9ZVNa9Vy5W1A58pbSBbab8WxW8t5pU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "391914447493-na20gnolchrcaftob5tm1pkb6qhfpfqg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "391914447493-sjrj4l5oh1e6ebbf16bd4en6el87leuk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.airify"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
