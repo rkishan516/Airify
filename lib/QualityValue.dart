@@ -18,7 +18,9 @@ class _qualityValueState extends State<qualityValue> {
           : _validate = false;
     });
     if (_validate == false) {
-      _databaseReference.child('2').update({'buzzer value': _controller.text});
+      _databaseReference
+          .child('SURAT2')
+          .update({'buzzer value': int.parse(_controller.text)});
     }
   }
 

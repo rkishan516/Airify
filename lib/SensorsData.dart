@@ -7,28 +7,12 @@ class sensorsData extends StatefulWidget {
 }
 
 class _sensorsDataState extends State<sensorsData> {
-  final _databaseReference = FirebaseDatabase.instance.reference().child('1');
+  final _databaseReference =
+      FirebaseDatabase.instance.reference().child('SURAT1');
   int _temperature;
   int _humidity;
   int _gasLevel;
   int _airQuality;
-
-  @override
-  void initState() {
-    getRecord();
-  }
-
-  void getRecord() {
-    _databaseReference.once().then((DataSnapshot snapshot) {
-      print('Data : ${snapshot.value}');
-      setState(() {
-        _temperature = snapshot.value['Temp'];
-        _humidity = snapshot.value['Humidity'];
-        _gasLevel = snapshot.value['Gas Level'];
-        _airQuality = snapshot.value['Air Quality'];
-      });
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +25,7 @@ class _sensorsDataState extends State<sensorsData> {
           DataSnapshot snapshot = snap.data.snapshot;
           _temperature = snapshot.value['Temp'];
           _humidity = snapshot.value['Humidity'];
-          _gasLevel = snapshot.value['Gas Level'];
+          _gasLevel = snapshot.value['Pressure'];
           _airQuality = snapshot.value['Air Quality'];
           return snap.data.snapshot.value == null
               ? SizedBox()
@@ -75,17 +59,13 @@ class _sensorsDataState extends State<sensorsData> {
                                       height:
                                           (MediaQuery.of(context).size.height) /
                                               32),
-                                  (_temperature != null)
-                                      ? Text(
-                                          '$_temperature°C',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 32.0,
-                                              color: Colors.white),
-                                        )
-                                      : CircularProgressIndicator(
-                                          backgroundColor: Colors.white,
-                                        )
+                                  Text(
+                                    '$_temperature°C',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 32.0,
+                                        color: Colors.white),
+                                  )
                                 ],
                               ),
                             ),
@@ -119,17 +99,13 @@ class _sensorsDataState extends State<sensorsData> {
                                       height:
                                           (MediaQuery.of(context).size.height) /
                                               32),
-                                  (_humidity == null)
-                                      ? CircularProgressIndicator(
-                                          backgroundColor: Colors.white,
-                                        )
-                                      : Text(
-                                          '$_humidity%',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 32.0,
-                                              color: Colors.white),
-                                        )
+                                  Text(
+                                    '$_humidity%',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 32.0,
+                                        color: Colors.white),
+                                  )
                                 ],
                               ),
                             ),
@@ -155,25 +131,19 @@ class _sensorsDataState extends State<sensorsData> {
                                       BorderRadius.all(Radius.circular(10.0))),
                               child: Column(
                                 children: <Widget>[
-                                  Text('Gas Level',
+                                  Text('Pressure',
                                       style: TextStyle(color: Colors.white)),
                                   SizedBox(
                                       height:
                                           (MediaQuery.of(context).size.height) /
                                               32),
-                                  (_gasLevel == null)
-                                      ? CircularProgressIndicator(
-                                          backgroundColor: Colors.white,
-                                        )
-                                      : Text(
-                                          '$_gasLevel',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 32.0,
-                                              color: Colors.white),
-                                        ),
-                                  Text('ppm',
-                                      style: TextStyle(color: Colors.white))
+                                  Text(
+                                    '${_gasLevel} atm',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 32.0,
+                                        color: Colors.white),
+                                  ),
                                 ],
                               ),
                             ),
@@ -207,17 +177,13 @@ class _sensorsDataState extends State<sensorsData> {
                                       height:
                                           (MediaQuery.of(context).size.height) /
                                               32),
-                                  (_airQuality == null)
-                                      ? CircularProgressIndicator(
-                                          backgroundColor: Colors.white,
-                                        )
-                                      : Text(
-                                          '$_airQuality',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 32.0,
-                                              color: Colors.white),
-                                        )
+                                  Text(
+                                    '$_airQuality',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 32.0,
+                                        color: Colors.white),
+                                  )
                                 ],
                               ),
                             ),
