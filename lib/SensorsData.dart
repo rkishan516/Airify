@@ -1,4 +1,5 @@
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class sensorsData extends StatefulWidget {
@@ -31,164 +32,126 @@ class _sensorsDataState extends State<sensorsData> {
               ? SizedBox()
               : Container(
                   padding: EdgeInsets.all(32.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  child: GridView(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 20.0,
+                        mainAxisSpacing: 20.0,
+                        childAspectRatio: 0.75),
                     children: <Widget>[
-                      Row(
-                        children: <Widget>[
-                          Expanded(
-                            flex: 2,
-                            child: Container(
-                              padding: EdgeInsets.only(top: 28.0),
-                              height: (MediaQuery.of(context).size.height) / 4,
-                              decoration: BoxDecoration(
-                                  color: (_temperature == null)
-                                      ? Theme.of(context).primaryColor
-                                      : (_temperature > 40 || _temperature < 0)
-                                          ? Colors.red
-                                          : (_temperature > 30)
-                                              ? Colors.orange
-                                              : Colors.green,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10.0))),
-                              child: Column(
-                                children: <Widget>[
-                                  Text('Temperature',
-                                      style: TextStyle(color: Colors.white)),
-                                  SizedBox(
-                                      height:
-                                          (MediaQuery.of(context).size.height) /
-                                              32),
-                                  Text(
-                                    '$_temperature°C',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 32.0,
-                                        color: Colors.white),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            flex: 1,
-                            child: SizedBox(
-                              height: (MediaQuery.of(context).size.height) / 4,
-                            ),
-                          ),
-                          Expanded(
-                            flex: 2,
-                            child: Container(
-                              padding: EdgeInsets.only(top: 28.0),
-                              height: (MediaQuery.of(context).size.height) / 4,
-                              decoration: BoxDecoration(
-                                  color: (_humidity == null)
-                                      ? Theme.of(context).primaryColor
-                                      : (_humidity < 30)
-                                          ? Colors.green
-                                          : (_humidity < 70)
-                                              ? Colors.orange
-                                              : Colors.red,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10.0))),
-                              child: Column(
-                                children: <Widget>[
-                                  Text('Humidity',
-                                      style: TextStyle(color: Colors.white)),
-                                  SizedBox(
-                                      height:
-                                          (MediaQuery.of(context).size.height) /
-                                              32),
-                                  Text(
-                                    '$_humidity%',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 32.0,
-                                        color: Colors.white),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
+                      Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                        color: (_temperature == null)
+                            ? Theme.of(context).primaryColor
+                            : (_temperature > 40 || _temperature < 0)
+                                ? Colors.red
+                                : (_temperature > 30)
+                                    ? Colors.orange
+                                    : Colors.green,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text('Temperature',
+                                style: TextStyle(color: Colors.white)),
+                            SizedBox(
+                                height:
+                                    (MediaQuery.of(context).size.height) / 32),
+                            Text(
+                              '$_temperature°C',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 32.0,
+                                  color: Colors.white),
+                            )
+                          ],
+                        ),
                       ),
-                      Row(
-                        children: <Widget>[
-                          Expanded(
-                            flex: 2,
-                            child: Container(
-                              padding: EdgeInsets.only(top: 28.0),
-                              height: (MediaQuery.of(context).size.height) / 4,
-                              decoration: BoxDecoration(
-                                  color: (_gasLevel == null)
-                                      ? Theme.of(context).primaryColor
-                                      : (_gasLevel < 100)
-                                          ? Colors.green
-                                          : (_gasLevel < 170)
-                                              ? Colors.orange
-                                              : Colors.red,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10.0))),
-                              child: Column(
-                                children: <Widget>[
-                                  Text('Pressure',
-                                      style: TextStyle(color: Colors.white)),
-                                  SizedBox(
-                                      height:
-                                          (MediaQuery.of(context).size.height) /
-                                              32),
-                                  Text(
-                                    '${_gasLevel} atm',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 32.0,
-                                        color: Colors.white),
-                                  ),
-                                ],
-                              ),
+                      Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                        color: (_humidity == null)
+                            ? Theme.of(context).primaryColor
+                            : (_humidity < 30)
+                                ? Colors.green
+                                : (_humidity < 70) ? Colors.orange : Colors.red,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text('Humidity',
+                                style: TextStyle(color: Colors.white)),
+                            SizedBox(
+                                height:
+                                    (MediaQuery.of(context).size.height) / 32),
+                            Text(
+                              '$_humidity%',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 32.0,
+                                  color: Colors.white),
+                            )
+                          ],
+                        ),
+                      ),
+                      Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                        color: (_gasLevel == null)
+                            ? Theme.of(context).primaryColor
+                            : (_gasLevel < 100)
+                                ? Colors.green
+                                : (_gasLevel < 170)
+                                    ? Colors.orange
+                                    : Colors.red,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text('Pressure',
+                                style: TextStyle(color: Colors.white)),
+                            SizedBox(
+                                height:
+                                    (MediaQuery.of(context).size.height) / 32),
+                            Text(
+                              '${_gasLevel} atm',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 32.0,
+                                  color: Colors.white),
                             ),
-                          ),
-                          Expanded(
-                            flex: 1,
-                            child: SizedBox(
-                              height: (MediaQuery.of(context).size.height) / 4,
-                            ),
-                          ),
-                          Expanded(
-                            flex: 2,
-                            child: Container(
-                              padding: EdgeInsets.only(top: 28.0),
-                              height: (MediaQuery.of(context).size.height) / 4,
-                              decoration: BoxDecoration(
-                                  color: (_airQuality == null)
-                                      ? Theme.of(context).primaryColor
-                                      : (_airQuality < 100)
-                                          ? Colors.green
-                                          : (_airQuality < 170)
-                                              ? Colors.orange
-                                              : Colors.red,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10.0))),
-                              child: Column(
-                                children: <Widget>[
-                                  Text('Air Quality',
-                                      style: TextStyle(color: Colors.white)),
-                                  SizedBox(
-                                      height:
-                                          (MediaQuery.of(context).size.height) /
-                                              32),
-                                  Text(
-                                    '$_airQuality',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 32.0,
-                                        color: Colors.white),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
+                      ),
+                      Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                        color: (_airQuality == null)
+                            ? Theme.of(context).primaryColor
+                            : (_airQuality < 100)
+                                ? Colors.green
+                                : (_airQuality < 170)
+                                    ? Colors.orange
+                                    : Colors.red,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text('Air Quality',
+                                style: TextStyle(color: Colors.white)),
+                            SizedBox(
+                                height:
+                                    (MediaQuery.of(context).size.height) / 32),
+                            Text(
+                              '$_airQuality',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 32.0,
+                                  color: Colors.white),
+                            )
+                          ],
+                        ),
                       ),
                     ],
                   ),
