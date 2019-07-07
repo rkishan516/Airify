@@ -14,6 +14,7 @@ class _sensorsDataState extends State<sensorsData> {
   int _humidity;
   int _gasLevel;
   int _airQuality;
+  double ScreenHeight;
 
   @override
   Widget build(BuildContext context) {
@@ -28,13 +29,17 @@ class _sensorsDataState extends State<sensorsData> {
           _humidity = snapshot.value['Humidity'];
           _gasLevel = snapshot.value['Pressure'];
           _airQuality = snapshot.value['Air Quality'];
+          ScreenHeight = MediaQuery.of(context).size.height;
           return snap.data.snapshot.value == null
               ? SizedBox()
               : Container(
                   padding: EdgeInsets.all(32.0),
                   child: GridView(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
+                        crossAxisCount: (MediaQuery.of(context).orientation ==
+                                Orientation.portrait)
+                            ? 2
+                            : 4,
                         crossAxisSpacing: 20.0,
                         mainAxisSpacing: 20.0,
                         childAspectRatio: 0.75),
@@ -55,16 +60,15 @@ class _sensorsDataState extends State<sensorsData> {
                           children: <Widget>[
                             Text('Temperature',
                                 style: TextStyle(color: Colors.white)),
-                            SizedBox(
-                                height:
-                                    (MediaQuery.of(context).size.height) / 32),
+                            SizedBox(height: (ScreenHeight) / 32),
                             Text(
                               '$_temperature°C',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 32.0,
                                   color: Colors.white),
-                            )
+                            ),
+                            SizedBox(height: (ScreenHeight) / 20),
                           ],
                         ),
                       ),
@@ -82,16 +86,15 @@ class _sensorsDataState extends State<sensorsData> {
                           children: <Widget>[
                             Text('Humidity',
                                 style: TextStyle(color: Colors.white)),
-                            SizedBox(
-                                height:
-                                    (MediaQuery.of(context).size.height) / 32),
+                            SizedBox(height: (ScreenHeight) / 32),
                             Text(
                               '$_humidity%',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 32.0,
                                   color: Colors.white),
-                            )
+                            ),
+                            SizedBox(height: (ScreenHeight) / 20),
                           ],
                         ),
                       ),
@@ -111,9 +114,7 @@ class _sensorsDataState extends State<sensorsData> {
                           children: <Widget>[
                             Text('Pressure',
                                 style: TextStyle(color: Colors.white)),
-                            SizedBox(
-                                height:
-                                    (MediaQuery.of(context).size.height) / 32),
+                            SizedBox(height: (ScreenHeight) / 32),
                             Text(
                               '${_gasLevel} atm',
                               style: TextStyle(
@@ -121,6 +122,7 @@ class _sensorsDataState extends State<sensorsData> {
                                   fontSize: 32.0,
                                   color: Colors.white),
                             ),
+                            SizedBox(height: (ScreenHeight) / 20),
                           ],
                         ),
                       ),
@@ -140,16 +142,15 @@ class _sensorsDataState extends State<sensorsData> {
                           children: <Widget>[
                             Text('Air Quality',
                                 style: TextStyle(color: Colors.white)),
-                            SizedBox(
-                                height:
-                                    (MediaQuery.of(context).size.height) / 32),
+                            SizedBox(height: (ScreenHeight) / 32),
                             Text(
                               '$_airQuality',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 32.0,
                                   color: Colors.white),
-                            )
+                            ),
+                            SizedBox(height: (ScreenHeight) / 20),
                           ],
                         ),
                       ),
