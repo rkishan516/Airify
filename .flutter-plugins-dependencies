@@ -1,0 +1,1 @@
+{"dependencyGraph":[{"name":"firebase_core","dependencies":[]},{"name":"firebase_database","dependencies":["firebase_core"]}]}
